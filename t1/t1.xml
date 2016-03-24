@@ -1,0 +1,916 @@
+<?xml version="1.0" standalone="yes"?>  
+<?xml-stylesheet type="text/xsl" href="cheddar_project.xsl"?>
+<!DOCTYPE cheddar [  
+<!ELEMENT name (#PCDATA) > 
+<!ELEMENT scheduler (#PCDATA) > 
+<!ELEMENT parameter (#PCDATA) > 
+<!ELEMENT context_switch_overhead (#PCDATA) > 
+<!ELEMENT network_link (#PCDATA) > 
+<!ELEMENT offset (#PCDATA) > 
+<!ELEMENT period (#PCDATA) > 
+<!ELEMENT capacity (#PCDATA) > 
+<!ELEMENT deadline (#PCDATA) > 
+<!ELEMENT context_switch_overhead (#PCDATA) > 
+<!ELEMENT start_time (#PCDATA) > 
+<!ELEMENT blocking_time (#PCDATA) > 
+<!ELEMENT policy (#PCDATA) > 
+<!ELEMENT priority (#PCDATA) > 
+<!ELEMENT criticality (#PCDATA) > 
+<!ELEMENT cpu_name (#PCDATA) > 
+<!ELEMENT address_space_name (#PCDATA) > 
+<!ELEMENT jitter (#PCDATA) > 
+<!ELEMENT seed (#PCDATA) > 
+<!ELEMENT predictable_seed (#PCDATA) > 
+<!ELEMENT activation_rule (#PCDATA) > 
+<!ELEMENT state (#PCDATA) > 
+<!ELEMENT protocol (#PCDATA) > 
+<!ELEMENT size (#PCDATA) > 
+<!ELEMENT qs (#PCDATA) > 
+<!ELEMENT time (#PCDATA) > 
+<!ELEMENT buffer_user (#PCDATA) >  
+<!ELEMENT resource_user (#PCDATA) >  
+<!ELEMENT event_analyzer (#PCDATA) >  
+<!ELEMENT type (#PCDATA) >  
+<!ELEMENT text_memory_size (#PCDATA) >  
+<!ELEMENT heap_memory_size (#PCDATA) >  
+<!ELEMENT stack_memory_size (#PCDATA) >  
+<!ELEMENT data_memory_size (#PCDATA) >  
+<!ELEMENT cheddar (processors, (address_spaces)?, (tasks)?, ((event_analyzers)?|(networks)?|(buffers)?|(resources)?|(messages)?),(dependencies)?  )  >   
+<!ELEMENT processors (processor)+ >  
+<!ELEMENT processor (name|scheduler|network_link) >  
+<!ELEMENT address_spaces (address_space)+ >  
+<!ELEMENT address_space (name|text_memory_size|data_memory_size|stack_memory_size|heap_memory_size|(scheduler)?) >  
+<!ELEMENT networks (network)+ >  
+<!ELEMENT network (name|type) >  
+<!ELEMENT tasks (task)+>  
+<!ELEMENT task (name|cpu_name|address_space_name|capacity|start_time|(context_switch_overhead)?|(stack_memory_size)?|(text_memory_size)?|(period)?|(deadline)?|(parameters)?|(offsets)?|(jitter)?|(policy)?|(criticality)?|(priority)?|(predictable_seed)?|(blocking_time)?|(seed)?
+|(activation_rule)?) >  
+<!ELEMENT offsets (offset)+ >  
+<!ELEMENT parameters (parameter)+ >  
+<!ELEMENT messages (message)+ >  
+<!ELEMENT message (name|size|(period)?|(deadline)?|(jitter)?) >  
+<!ELEMENT buffers (buffer)+ >  
+<!ELEMENT buffer (cpu_name|address_space_name|qs|name|size|(buffer_used_by)?) >  
+<!ELEMENT buffer_used_by (buffer_user)+ >  
+<!ELEMENT resources (resource)+ >  
+<!ELEMENT resource (cpu_name|address_space_name|name|protocol|(state)?|(resource_used_by)?) >  
+<!ELEMENT resource_used_by (resource_user)+ >  
+<!ELEMENT dependencies (dependency)+ >  
+<!ELEMENT event_analyzers (event_analyzer)+ >  
+<!ELEMENT dependency (#PCDATA)  >  
+<!ATTLIST scheduler 
+        quantum CDATA  "0"  
+        is_preemptive CDATA  "PREEMPTIVE"  
+        automaton_name CDATA  ""  
+        parametric_file_name CDATA "" >  
+<!ATTLIST event_analyzer  
+        parametric_file_name CDATA "" >  
+<!ATTLIST task  
+        task_type CDATA  "APERIODIC_TYPE"  
+        x CDATA "0"  
+        y CDATA "0" > 
+<!ATTLIST buffer  
+        x CDATA "0" 
+        y CDATA "0" > 
+<!ATTLIST message  
+        x CDATA "0" 
+        y CDATA "0" > 
+<!ATTLIST buffer_user 
+        buffer_role CDATA  "producer" >  
+<!ATTLIST dependency 
+        from_type CDATA "task" 
+        to_type CDATA "task" > 
+<!ATTLIST parameter 
+        parameter_type CDATA  "integer" >  
+] >  
+
+
+
+<cheddar>
+<processors>
+	<processor>
+		<name>Node1</name>
+		<scheduler> RATE_MONOTONIC_PROTOCOL </scheduler>
+		<network_link> No_Network </network_link>
+	</processor>
+	<processor>
+		<name>Node2</name>
+		<scheduler> RATE_MONOTONIC_PROTOCOL </scheduler>
+		<network_link> No_Network </network_link>
+	</processor>
+	<processor>
+		<name>Node3</name>
+		<scheduler> RATE_MONOTONIC_PROTOCOL </scheduler>
+		<network_link> No_Network </network_link>
+	</processor>
+	<processor>
+		<name>Node4</name>
+		<scheduler> RATE_MONOTONIC_PROTOCOL </scheduler>
+		<network_link> No_Network </network_link>
+	</processor>
+	<processor>
+		<name>Node5</name>
+		<scheduler> RATE_MONOTONIC_PROTOCOL </scheduler>
+		<network_link> No_Network </network_link>
+	</processor>
+	<processor>
+		<name>Node6</name>
+		<scheduler> RATE_MONOTONIC_PROTOCOL </scheduler>
+		<network_link> No_Network </network_link>
+	</processor>
+</processors>
+<address_spaces>
+	<address_space>
+		<name>AS1</name>
+		<cpu_name>Node1</cpu_name>
+		<text_memory_size> 0</text_memory_size>
+		<stack_memory_size> 0</stack_memory_size>
+		<data_memory_size> 0</data_memory_size>
+		<heap_memory_size> 0</heap_memory_size>
+		<scheduler> NO_SCHEDULING_PROTOCOL </scheduler>
+	</address_space>
+	<address_space>
+		<name>AS2</name>
+		<cpu_name>Node2</cpu_name>
+		<text_memory_size> 0</text_memory_size>
+		<stack_memory_size> 0</stack_memory_size>
+		<data_memory_size> 0</data_memory_size>
+		<heap_memory_size> 0</heap_memory_size>
+		<scheduler> NO_SCHEDULING_PROTOCOL </scheduler>
+	</address_space>
+	<address_space>
+		<name>AS3</name>
+		<cpu_name>Node3</cpu_name>
+		<text_memory_size> 0</text_memory_size>
+		<stack_memory_size> 0</stack_memory_size>
+		<data_memory_size> 0</data_memory_size>
+		<heap_memory_size> 0</heap_memory_size>
+		<scheduler> NO_SCHEDULING_PROTOCOL </scheduler>
+	</address_space>
+	<address_space>
+		<name>AS4</name>
+		<cpu_name>Node4</cpu_name>
+		<text_memory_size> 0</text_memory_size>
+		<stack_memory_size> 0</stack_memory_size>
+		<data_memory_size> 0</data_memory_size>
+		<heap_memory_size> 0</heap_memory_size>
+		<scheduler> NO_SCHEDULING_PROTOCOL </scheduler>
+	</address_space>
+	<address_space>
+		<name>AS5</name>
+		<cpu_name>Node5</cpu_name>
+		<text_memory_size> 0</text_memory_size>
+		<stack_memory_size> 0</stack_memory_size>
+		<data_memory_size> 0</data_memory_size>
+		<heap_memory_size> 0</heap_memory_size>
+		<scheduler> NO_SCHEDULING_PROTOCOL </scheduler>
+	</address_space>
+	<address_space>
+		<name>AS6</name>
+		<cpu_name>Node6</cpu_name>
+		<text_memory_size> 0</text_memory_size>
+		<stack_memory_size> 0</stack_memory_size>
+		<data_memory_size> 0</data_memory_size>
+		<heap_memory_size> 0</heap_memory_size>
+		<scheduler> NO_SCHEDULING_PROTOCOL </scheduler>
+	</address_space>
+</address_spaces>
+
+<tasks>
+	<task task_type="PERIODIC_TYPE" >
+		<cpu_name>Node1</cpu_name>
+		<address_space_name>AS1</address_space_name>
+		<name>M01</name>
+		<capacity> 1</capacity>
+		<start_time> 0</start_time>
+		<policy>SCHED_FIFO</policy>
+		<deadline> 10</deadline>
+		<criticality> 0</criticality>
+		<context_switch_overhead> 0</context_switch_overhead>
+		<blocking_time> 0</blocking_time>
+		<priority> 1</priority>
+		<text_memory_size> 0</text_memory_size>
+		<stack_memory_size> 0</stack_memory_size>
+		<period> 10</period>
+		<jitter> 0</jitter>
+	</task>
+	<task task_type="PERIODIC_TYPE" >
+		<cpu_name>Node4</cpu_name>
+		<address_space_name>AS4</address_space_name>
+		<name>M02</name>
+		<capacity> 1</capacity>
+		<start_time> 0</start_time>
+		<policy>SCHED_FIFO</policy>
+		<deadline> 14</deadline>
+		<criticality> 0</criticality>
+		<context_switch_overhead> 0</context_switch_overhead>
+		<blocking_time> 0</blocking_time>
+		<priority> 2</priority>
+		<text_memory_size> 0</text_memory_size>
+		<stack_memory_size> 0</stack_memory_size>
+		<period> 14</period>
+		<jitter> 0</jitter>
+	</task>
+	<task task_type="PERIODIC_TYPE" >
+		<cpu_name>Node1</cpu_name>
+		<address_space_name>AS1</address_space_name>
+		<name>M03</name>
+		<capacity> 1</capacity>
+		<start_time> 0</start_time>
+		<policy>SCHED_FIFO</policy>
+		<deadline> 20</deadline>
+		<criticality> 0</criticality>
+		<context_switch_overhead> 0</context_switch_overhead>
+		<blocking_time> 0</blocking_time>
+		<priority> 3</priority>
+		<text_memory_size> 0</text_memory_size>
+		<stack_memory_size> 0</stack_memory_size>
+		<period> 20</period>
+		<jitter> 0</jitter>
+	</task>
+	<task task_type="PERIODIC_TYPE" >
+		<cpu_name>Node2</cpu_name>
+		<address_space_name>AS2</address_space_name>
+		<name>M04</name>
+		<capacity> 1</capacity>
+		<start_time> 0</start_time>
+		<policy>SCHED_FIFO</policy>
+		<deadline> 15</deadline>
+		<criticality> 0</criticality>
+		<context_switch_overhead> 0</context_switch_overhead>
+		<blocking_time> 0</blocking_time>
+		<priority> 4</priority>
+		<text_memory_size> 0</text_memory_size>
+		<stack_memory_size> 0</stack_memory_size>
+		<period> 15</period>
+		<jitter> 0</jitter>
+	</task>
+	<task task_type="PERIODIC_TYPE" >
+		<cpu_name>Node3</cpu_name>
+		<address_space_name>AS3</address_space_name>
+		<name>M05</name>
+		<capacity> 1</capacity>
+		<start_time> 0</start_time>
+		<policy>SCHED_FIFO</policy>
+		<deadline> 20</deadline>
+		<criticality> 0</criticality>
+		<context_switch_overhead> 0</context_switch_overhead>
+		<blocking_time> 0</blocking_time>
+		<priority> 5</priority>
+		<text_memory_size> 0</text_memory_size>
+		<stack_memory_size> 0</stack_memory_size>
+		<period> 20</period>
+		<jitter> 0</jitter>
+	</task>
+	<task task_type="PERIODIC_TYPE" >
+		<cpu_name>Node3</cpu_name>
+		<address_space_name>AS3</address_space_name>
+		<name>M06</name>
+		<capacity> 1</capacity>
+		<start_time> 0</start_time>
+		<policy>SCHED_FIFO</policy>
+		<deadline> 40</deadline>
+		<criticality> 0</criticality>
+		<context_switch_overhead> 0</context_switch_overhead>
+		<blocking_time> 0</blocking_time>
+		<priority> 6</priority>
+		<text_memory_size> 0</text_memory_size>
+		<stack_memory_size> 0</stack_memory_size>
+		<period> 40</period>
+		<jitter> 0</jitter>
+	</task>
+	<task task_type="PERIODIC_TYPE" >
+		<cpu_name>Node3</cpu_name>
+		<address_space_name>AS3</address_space_name>
+		<name>M07</name>
+		<capacity> 1</capacity>
+		<start_time> 0</start_time>
+		<policy>SCHED_FIFO</policy>
+		<deadline> 15</deadline>
+		<criticality> 0</criticality>
+		<context_switch_overhead> 0</context_switch_overhead>
+		<blocking_time> 0</blocking_time>
+		<priority> 7</priority>
+		<text_memory_size> 0</text_memory_size>
+		<stack_memory_size> 0</stack_memory_size>
+		<period> 15</period>
+		<jitter> 0</jitter>
+	</task>
+	<task task_type="PERIODIC_TYPE" >
+		<cpu_name>Node6</cpu_name>
+		<address_space_name>AS6</address_space_name>
+		<name>M08</name>
+		<capacity> 1</capacity>
+		<start_time> 0</start_time>
+		<policy>SCHED_FIFO</policy>
+		<deadline> 50</deadline>
+		<criticality> 0</criticality>
+		<context_switch_overhead> 0</context_switch_overhead>
+		<blocking_time> 0</blocking_time>
+		<priority> 8</priority>
+		<text_memory_size> 0</text_memory_size>
+		<stack_memory_size> 0</stack_memory_size>
+		<period> 50</period>
+		<jitter> 0</jitter>
+	</task>
+	<task task_type="PERIODIC_TYPE" >
+		<cpu_name>Node5</cpu_name>
+		<address_space_name>AS5</address_space_name>
+		<name>M09</name>
+		<capacity> 1</capacity>
+		<start_time> 0</start_time>
+		<policy>SCHED_FIFO</policy>
+		<deadline> 20</deadline>
+		<criticality> 0</criticality>
+		<context_switch_overhead> 0</context_switch_overhead>
+		<blocking_time> 0</blocking_time>
+		<priority> 9</priority>
+		<text_memory_size> 0</text_memory_size>
+		<stack_memory_size> 0</stack_memory_size>
+		<period> 20</period>
+		<jitter> 0</jitter>
+	</task>
+	<task task_type="PERIODIC_TYPE" >
+		<cpu_name>Node1</cpu_name>
+		<address_space_name>AS1</address_space_name>
+		<name>M10</name>
+		<capacity> 1</capacity>
+		<start_time> 0</start_time>
+		<policy>SCHED_FIFO</policy>
+		<deadline> 100</deadline>
+		<criticality> 0</criticality>
+		<context_switch_overhead> 0</context_switch_overhead>
+		<blocking_time> 0</blocking_time>
+		<priority> 10</priority>
+		<text_memory_size> 0</text_memory_size>
+		<stack_memory_size> 0</stack_memory_size>
+		<period> 100</period>
+		<jitter> 0</jitter>
+	</task>
+	<task task_type="PERIODIC_TYPE" >
+		<cpu_name>Node2</cpu_name>
+		<address_space_name>AS2</address_space_name>
+		<name>M11</name>
+		<capacity> 1</capacity>
+		<start_time> 0</start_time>
+		<policy>SCHED_FIFO</policy>
+		<deadline> 50</deadline>
+		<criticality> 0</criticality>
+		<context_switch_overhead> 0</context_switch_overhead>
+		<blocking_time> 0</blocking_time>
+		<priority> 11</priority>
+		<text_memory_size> 0</text_memory_size>
+		<stack_memory_size> 0</stack_memory_size>
+		<period> 50</period>
+		<jitter> 0</jitter>
+	</task>
+	<task task_type="PERIODIC_TYPE" >
+		<cpu_name>Node3</cpu_name>
+		<address_space_name>AS3</address_space_name>
+		<name>M12</name>
+		<capacity> 1</capacity>
+		<start_time> 0</start_time>
+		<policy>SCHED_FIFO</policy>
+		<deadline> 100</deadline>
+		<criticality> 0</criticality>
+		<context_switch_overhead> 0</context_switch_overhead>
+		<blocking_time> 0</blocking_time>
+		<priority> 12</priority>
+		<text_memory_size> 0</text_memory_size>
+		<stack_memory_size> 0</stack_memory_size>
+		<period> 100</period>
+		<jitter> 0</jitter>
+	</task>
+	<task task_type="PERIODIC_TYPE" >
+		<cpu_name>Node1</cpu_name>
+		<address_space_name>AS1</address_space_name>
+		<name>t01</name>
+		<capacity> 2</capacity>
+		<start_time> 0</start_time>
+		<policy>SCHED_FIFO</policy>
+		<deadline> 10</deadline>
+		<criticality> 0</criticality>
+		<context_switch_overhead> 0</context_switch_overhead>
+		<blocking_time> 0</blocking_time>
+		<priority> 1</priority>
+		<text_memory_size> 0</text_memory_size>
+		<stack_memory_size> 0</stack_memory_size>
+		<period> 10</period>
+		<jitter> 0</jitter>
+	</task>
+	<task task_type="PERIODIC_TYPE" >
+		<cpu_name>Node1</cpu_name>
+		<address_space_name>AS1</address_space_name>
+		<name>t02</name>
+		<capacity> 2</capacity>
+		<start_time> 0</start_time>
+		<policy>SCHED_FIFO</policy>
+		<deadline> 20</deadline>
+		<criticality> 0</criticality>
+		<context_switch_overhead> 0</context_switch_overhead>
+		<blocking_time> 0</blocking_time>
+		<priority> 1</priority>
+		<text_memory_size> 0</text_memory_size>
+		<stack_memory_size> 0</stack_memory_size>
+		<period> 20</period>
+		<jitter> 0</jitter>
+	</task>
+	<task task_type="PERIODIC_TYPE" >
+		<cpu_name>Node1</cpu_name>
+		<address_space_name>AS1</address_space_name>
+		<name>t03</name>
+		<capacity> 2</capacity>
+		<start_time> 0</start_time>
+		<policy>SCHED_FIFO</policy>
+		<deadline> 100</deadline>
+		<criticality> 0</criticality>
+		<context_switch_overhead> 0</context_switch_overhead>
+		<blocking_time> 0</blocking_time>
+		<priority> 1</priority>
+		<text_memory_size> 0</text_memory_size>
+		<stack_memory_size> 0</stack_memory_size>
+		<period> 100</period>
+		<jitter> 0</jitter>
+	</task>
+	<task task_type="PERIODIC_TYPE" >
+		<cpu_name>Node1</cpu_name>
+		<address_space_name>AS1</address_space_name>
+		<name>t04</name>
+		<capacity> 2</capacity>
+		<start_time> 0</start_time>
+		<policy>SCHED_FIFO</policy>
+		<deadline> 15</deadline>
+		<criticality> 0</criticality>
+		<context_switch_overhead> 0</context_switch_overhead>
+		<blocking_time> 0</blocking_time>
+		<priority> 1</priority>
+		<text_memory_size> 0</text_memory_size>
+		<stack_memory_size> 0</stack_memory_size>
+		<period> 15</period>
+		<jitter> 0</jitter>
+	</task>
+	<task task_type="PERIODIC_TYPE" >
+		<cpu_name>Node1</cpu_name>
+		<address_space_name>AS1</address_space_name>
+		<name>t05</name>
+		<capacity> 2</capacity>
+		<start_time> 0</start_time>
+		<policy>SCHED_FIFO</policy>
+		<deadline> 14</deadline>
+		<criticality> 0</criticality>
+		<context_switch_overhead> 0</context_switch_overhead>
+		<blocking_time> 0</blocking_time>
+		<priority> 1</priority>
+		<text_memory_size> 0</text_memory_size>
+		<stack_memory_size> 0</stack_memory_size>
+		<period> 14</period>
+		<jitter> 0</jitter>
+	</task>
+	<task task_type="PERIODIC_TYPE" >
+		<cpu_name>Node1</cpu_name>
+		<address_space_name>AS1</address_space_name>
+		<name>t06</name>
+		<capacity> 2</capacity>
+		<start_time> 0</start_time>
+		<policy>SCHED_FIFO</policy>
+		<deadline> 50</deadline>
+		<criticality> 0</criticality>
+		<context_switch_overhead> 0</context_switch_overhead>
+		<blocking_time> 0</blocking_time>
+		<priority> 1</priority>
+		<text_memory_size> 0</text_memory_size>
+		<stack_memory_size> 0</stack_memory_size>
+		<period> 50</period>
+		<jitter> 0</jitter>
+	</task>
+	<task task_type="PERIODIC_TYPE" >
+		<cpu_name>Node1</cpu_name>
+		<address_space_name>AS1</address_space_name>
+		<name>t07</name>
+		<capacity> 2</capacity>
+		<start_time> 0</start_time>
+		<policy>SCHED_FIFO</policy>
+		<deadline> 40</deadline>
+		<criticality> 0</criticality>
+		<context_switch_overhead> 0</context_switch_overhead>
+		<blocking_time> 0</blocking_time>
+		<priority> 1</priority>
+		<text_memory_size> 0</text_memory_size>
+		<stack_memory_size> 0</stack_memory_size>
+		<period> 40</period>
+		<jitter> 0</jitter>
+	</task>
+	<task task_type="PERIODIC_TYPE" >
+		<cpu_name>Node2</cpu_name>
+		<address_space_name>AS2</address_space_name>
+		<name>t08</name>
+		<capacity> 2</capacity>
+		<start_time> 0</start_time>
+		<policy>SCHED_FIFO</policy>
+		<deadline> 15</deadline>
+		<criticality> 0</criticality>
+		<context_switch_overhead> 0</context_switch_overhead>
+		<blocking_time> 0</blocking_time>
+		<priority> 1</priority>
+		<text_memory_size> 0</text_memory_size>
+		<stack_memory_size> 0</stack_memory_size>
+		<period> 15</period>
+		<jitter> 0</jitter>
+	</task>
+	<task task_type="PERIODIC_TYPE" >
+		<cpu_name>Node2</cpu_name>
+		<address_space_name>AS2</address_space_name>
+		<name>t09</name>
+		<capacity> 2</capacity>
+		<start_time> 0</start_time>
+		<policy>SCHED_FIFO</policy>
+		<deadline> 50</deadline>
+		<criticality> 0</criticality>
+		<context_switch_overhead> 0</context_switch_overhead>
+		<blocking_time> 0</blocking_time>
+		<priority> 1</priority>
+		<text_memory_size> 0</text_memory_size>
+		<stack_memory_size> 0</stack_memory_size>
+		<period> 50</period>
+		<jitter> 0</jitter>
+	</task>
+	<task task_type="PERIODIC_TYPE" >
+		<cpu_name>Node2</cpu_name>
+		<address_space_name>AS2</address_space_name>
+		<name>t10</name>
+		<capacity> 2</capacity>
+		<start_time> 0</start_time>
+		<policy>SCHED_FIFO</policy>
+		<deadline> 50</deadline>
+		<criticality> 0</criticality>
+		<context_switch_overhead> 0</context_switch_overhead>
+		<blocking_time> 0</blocking_time>
+		<priority> 1</priority>
+		<text_memory_size> 0</text_memory_size>
+		<stack_memory_size> 0</stack_memory_size>
+		<period> 50</period>
+		<jitter> 0</jitter>
+	</task>
+	<task task_type="PERIODIC_TYPE" >
+		<cpu_name>Node2</cpu_name>
+		<address_space_name>AS2</address_space_name>
+		<name>t11</name>
+		<capacity> 2</capacity>
+		<start_time> 0</start_time>
+		<policy>SCHED_FIFO</policy>
+		<deadline> 14</deadline>
+		<criticality> 0</criticality>
+		<context_switch_overhead> 0</context_switch_overhead>
+		<blocking_time> 0</blocking_time>
+		<priority> 1</priority>
+		<text_memory_size> 0</text_memory_size>
+		<stack_memory_size> 0</stack_memory_size>
+		<period> 14</period>
+		<jitter> 0</jitter>
+	</task>
+	<task task_type="PERIODIC_TYPE" >
+		<cpu_name>Node3</cpu_name>
+		<address_space_name>AS3</address_space_name>
+		<name>t12</name>
+		<capacity> 1</capacity>
+		<start_time> 0</start_time>
+		<policy>SCHED_FIFO</policy>
+		<deadline> 20</deadline>
+		<criticality> 0</criticality>
+		<context_switch_overhead> 0</context_switch_overhead>
+		<blocking_time> 0</blocking_time>
+		<priority> 1</priority>
+		<text_memory_size> 0</text_memory_size>
+		<stack_memory_size> 0</stack_memory_size>
+		<period> 20</period>
+		<jitter> 0</jitter>
+	</task>
+	<task task_type="PERIODIC_TYPE" >
+		<cpu_name>Node3</cpu_name>
+		<address_space_name>AS3</address_space_name>
+		<name>t13</name>
+		<capacity> 2</capacity>
+		<start_time> 0</start_time>
+		<policy>SCHED_FIFO</policy>
+		<deadline> 40</deadline>
+		<criticality> 0</criticality>
+		<context_switch_overhead> 0</context_switch_overhead>
+		<blocking_time> 0</blocking_time>
+		<priority> 1</priority>
+		<text_memory_size> 0</text_memory_size>
+		<stack_memory_size> 0</stack_memory_size>
+		<period> 40</period>
+		<jitter> 0</jitter>
+	</task>
+	<task task_type="PERIODIC_TYPE" >
+		<cpu_name>Node3</cpu_name>
+		<address_space_name>AS3</address_space_name>
+		<name>t14</name>
+		<capacity> 1</capacity>
+		<start_time> 0</start_time>
+		<policy>SCHED_FIFO</policy>
+		<deadline> 15</deadline>
+		<criticality> 0</criticality>
+		<context_switch_overhead> 0</context_switch_overhead>
+		<blocking_time> 0</blocking_time>
+		<priority> 1</priority>
+		<text_memory_size> 0</text_memory_size>
+		<stack_memory_size> 0</stack_memory_size>
+		<period> 15</period>
+		<jitter> 0</jitter>
+	</task>
+	<task task_type="PERIODIC_TYPE" >
+		<cpu_name>Node3</cpu_name>
+		<address_space_name>AS3</address_space_name>
+		<name>t15</name>
+		<capacity> 2</capacity>
+		<start_time> 0</start_time>
+		<policy>SCHED_FIFO</policy>
+		<deadline> 100</deadline>
+		<criticality> 0</criticality>
+		<context_switch_overhead> 0</context_switch_overhead>
+		<blocking_time> 0</blocking_time>
+		<priority> 1</priority>
+		<text_memory_size> 0</text_memory_size>
+		<stack_memory_size> 0</stack_memory_size>
+		<period> 100</period>
+		<jitter> 0</jitter>
+	</task>
+	<task task_type="PERIODIC_TYPE" >
+		<cpu_name>Node3</cpu_name>
+		<address_space_name>AS3</address_space_name>
+		<name>t16</name>
+		<capacity> 1</capacity>
+		<start_time> 0</start_time>
+		<policy>SCHED_FIFO</policy>
+		<deadline> 20</deadline>
+		<criticality> 0</criticality>
+		<context_switch_overhead> 0</context_switch_overhead>
+		<blocking_time> 0</blocking_time>
+		<priority> 1</priority>
+		<text_memory_size> 0</text_memory_size>
+		<stack_memory_size> 0</stack_memory_size>
+		<period> 20</period>
+		<jitter> 0</jitter>
+	</task>
+	<task task_type="PERIODIC_TYPE" >
+		<cpu_name>Node3</cpu_name>
+		<address_space_name>AS3</address_space_name>
+		<name>t17</name>
+		<capacity> 2</capacity>
+		<start_time> 0</start_time>
+		<policy>SCHED_FIFO</policy>
+		<deadline> 20</deadline>
+		<criticality> 0</criticality>
+		<context_switch_overhead> 0</context_switch_overhead>
+		<blocking_time> 0</blocking_time>
+		<priority> 1</priority>
+		<text_memory_size> 0</text_memory_size>
+		<stack_memory_size> 0</stack_memory_size>
+		<period> 20</period>
+		<jitter> 0</jitter>
+	</task>
+	<task task_type="PERIODIC_TYPE" >
+		<cpu_name>Node4</cpu_name>
+		<address_space_name>AS4</address_space_name>
+		<name>t18</name>
+		<capacity> 4</capacity>
+		<start_time> 0</start_time>
+		<policy>SCHED_FIFO</policy>
+		<deadline> 14</deadline>
+		<criticality> 0</criticality>
+		<context_switch_overhead> 0</context_switch_overhead>
+		<blocking_time> 0</blocking_time>
+		<priority> 1</priority>
+		<text_memory_size> 0</text_memory_size>
+		<stack_memory_size> 0</stack_memory_size>
+		<period> 14</period>
+		<jitter> 0</jitter>
+	</task>
+	<task task_type="PERIODIC_TYPE" >
+		<cpu_name>Node4</cpu_name>
+		<address_space_name>AS4</address_space_name>
+		<name>t19</name>
+		<capacity> 4</capacity>
+		<start_time> 0</start_time>
+		<policy>SCHED_FIFO</policy>
+		<deadline> 20</deadline>
+		<criticality> 0</criticality>
+		<context_switch_overhead> 0</context_switch_overhead>
+		<blocking_time> 0</blocking_time>
+		<priority> 1</priority>
+		<text_memory_size> 0</text_memory_size>
+		<stack_memory_size> 0</stack_memory_size>
+		<period> 20</period>
+		<jitter> 0</jitter>
+	</task>
+	<task task_type="PERIODIC_TYPE" >
+		<cpu_name>Node5</cpu_name>
+		<address_space_name>AS5</address_space_name>
+		<name>t20</name>
+		<capacity> 1</capacity>
+		<start_time> 0</start_time>
+		<policy>SCHED_FIFO</policy>
+		<deadline> 20</deadline>
+		<criticality> 0</criticality>
+		<context_switch_overhead> 0</context_switch_overhead>
+		<blocking_time> 0</blocking_time>
+		<priority> 1</priority>
+		<text_memory_size> 0</text_memory_size>
+		<stack_memory_size> 0</stack_memory_size>
+		<period> 20</period>
+		<jitter> 0</jitter>
+	</task>
+	<task task_type="PERIODIC_TYPE" >
+		<cpu_name>Node5</cpu_name>
+		<address_space_name>AS5</address_space_name>
+		<name>t21</name>
+		<capacity> 1</capacity>
+		<start_time> 0</start_time>
+		<policy>SCHED_FIFO</policy>
+		<deadline> 20</deadline>
+		<criticality> 0</criticality>
+		<context_switch_overhead> 0</context_switch_overhead>
+		<blocking_time> 0</blocking_time>
+		<priority> 1</priority>
+		<text_memory_size> 0</text_memory_size>
+		<stack_memory_size> 0</stack_memory_size>
+		<period> 20</period>
+		<jitter> 0</jitter>
+	</task>
+	<task task_type="PERIODIC_TYPE" >
+		<cpu_name>Node5</cpu_name>
+		<address_space_name>AS5</address_space_name>
+		<name>t22</name>
+		<capacity> 1</capacity>
+		<start_time> 0</start_time>
+		<policy>SCHED_FIFO</policy>
+		<deadline> 10</deadline>
+		<criticality> 0</criticality>
+		<context_switch_overhead> 0</context_switch_overhead>
+		<blocking_time> 0</blocking_time>
+		<priority> 1</priority>
+		<text_memory_size> 0</text_memory_size>
+		<stack_memory_size> 0</stack_memory_size>
+		<period> 10</period>
+		<jitter> 0</jitter>
+	</task>
+	<task task_type="PERIODIC_TYPE" >
+		<cpu_name>Node5</cpu_name>
+		<address_space_name>AS5</address_space_name>
+		<name>t23</name>
+		<capacity> 2</capacity>
+		<start_time> 0</start_time>
+		<policy>SCHED_FIFO</policy>
+		<deadline> 14</deadline>
+		<criticality> 0</criticality>
+		<context_switch_overhead> 0</context_switch_overhead>
+		<blocking_time> 0</blocking_time>
+		<priority> 1</priority>
+		<text_memory_size> 0</text_memory_size>
+		<stack_memory_size> 0</stack_memory_size>
+		<period> 14</period>
+		<jitter> 0</jitter>
+	</task>
+	<task task_type="PERIODIC_TYPE" >
+		<cpu_name>Node5</cpu_name>
+		<address_space_name>AS5</address_space_name>
+		<name>t24</name>
+		<capacity> 2</capacity>
+		<start_time> 0</start_time>
+		<policy>SCHED_FIFO</policy>
+		<deadline> 15</deadline>
+		<criticality> 0</criticality>
+		<context_switch_overhead> 0</context_switch_overhead>
+		<blocking_time> 0</blocking_time>
+		<priority> 1</priority>
+		<text_memory_size> 0</text_memory_size>
+		<stack_memory_size> 0</stack_memory_size>
+		<period> 15</period>
+		<jitter> 0</jitter>
+	</task>
+	<task task_type="PERIODIC_TYPE" >
+		<cpu_name>Node6</cpu_name>
+		<address_space_name>AS6</address_space_name>
+		<name>t25</name>
+		<capacity> 2</capacity>
+		<start_time> 0</start_time>
+		<policy>SCHED_FIFO</policy>
+		<deadline> 50</deadline>
+		<criticality> 0</criticality>
+		<context_switch_overhead> 0</context_switch_overhead>
+		<blocking_time> 0</blocking_time>
+		<priority> 1</priority>
+		<text_memory_size> 0</text_memory_size>
+		<stack_memory_size> 0</stack_memory_size>
+		<period> 50</period>
+		<jitter> 0</jitter>
+	</task>
+	<task task_type="PERIODIC_TYPE" >
+		<cpu_name>Node6</cpu_name>
+		<address_space_name>AS6</address_space_name>
+		<name>t26</name>
+		<capacity> 2</capacity>
+		<start_time> 0</start_time>
+		<policy>SCHED_FIFO</policy>
+		<deadline> 50</deadline>
+		<criticality> 0</criticality>
+		<context_switch_overhead> 0</context_switch_overhead>
+		<blocking_time> 0</blocking_time>
+		<priority> 1</priority>
+		<text_memory_size> 0</text_memory_size>
+		<stack_memory_size> 0</stack_memory_size>
+		<period> 50</period>
+		<jitter> 0</jitter>
+	</task>
+	<task task_type="PERIODIC_TYPE" >
+		<cpu_name>Node6</cpu_name>
+		<address_space_name>AS6</address_space_name>
+		<name>t27</name>
+		<capacity> 2</capacity>
+		<start_time> 0</start_time>
+		<policy>SCHED_FIFO</policy>
+		<deadline> 10</deadline>
+		<criticality> 0</criticality>
+		<context_switch_overhead> 0</context_switch_overhead>
+		<blocking_time> 0</blocking_time>
+		<priority> 1</priority>
+		<text_memory_size> 0</text_memory_size>
+		<stack_memory_size> 0</stack_memory_size>
+		<period> 10</period>
+		<jitter> 0</jitter>
+	</task>
+	<task task_type="PERIODIC_TYPE" >
+		<cpu_name>Node6</cpu_name>
+		<address_space_name>AS6</address_space_name>
+		<name>t28</name>
+		<capacity> 2</capacity>
+		<start_time> 0</start_time>
+		<policy>SCHED_FIFO</policy>
+		<deadline> 100</deadline>
+		<criticality> 0</criticality>
+		<context_switch_overhead> 0</context_switch_overhead>
+		<blocking_time> 0</blocking_time>
+		<priority> 1</priority>
+		<text_memory_size> 0</text_memory_size>
+		<stack_memory_size> 0</stack_memory_size>
+		<period> 100</period>
+		<jitter> 0</jitter>
+	</task>
+	<task task_type="PERIODIC_TYPE" >
+		<cpu_name>Node6</cpu_name>
+		<address_space_name>AS6</address_space_name>
+		<name>t29</name>
+		<capacity> 2</capacity>
+		<start_time> 0</start_time>
+		<policy>SCHED_FIFO</policy>
+		<deadline> 40</deadline>
+		<criticality> 0</criticality>
+		<context_switch_overhead> 0</context_switch_overhead>
+		<blocking_time> 0</blocking_time>
+		<priority> 1</priority>
+		<text_memory_size> 0</text_memory_size>
+		<stack_memory_size> 0</stack_memory_size>
+		<period> 40</period>
+		<jitter> 0</jitter>
+	</task>
+	<task task_type="PERIODIC_TYPE" >
+		<cpu_name>Node6</cpu_name>
+		<address_space_name>AS6</address_space_name>
+		<name>t30</name>
+		<capacity> 2</capacity>
+		<start_time> 0</start_time>
+		<policy>SCHED_FIFO</policy>
+		<deadline> 20</deadline>
+		<criticality> 0</criticality>
+		<context_switch_overhead> 0</context_switch_overhead>
+		<blocking_time> 0</blocking_time>
+		<priority> 1</priority>
+		<text_memory_size> 0</text_memory_size>
+		<stack_memory_size> 0</stack_memory_size>
+		<period> 20</period>
+		<jitter> 0</jitter>
+	</task>
+	<task task_type="PERIODIC_TYPE" >
+		<cpu_name>Node6</cpu_name>
+		<address_space_name>AS6</address_space_name>
+		<name>t31</name>
+		<capacity> 2</capacity>
+		<start_time> 0</start_time>
+		<policy>SCHED_FIFO</policy>
+		<deadline> 100</deadline>
+		<criticality> 0</criticality>
+		<context_switch_overhead> 0</context_switch_overhead>
+		<blocking_time> 0</blocking_time>
+		<priority> 1</priority>
+		<text_memory_size> 0</text_memory_size>
+		<stack_memory_size> 0</stack_memory_size>
+		<period> 100</period>
+		<jitter> 0</jitter>
+	</task>
+</tasks>
+</cheddar>
+
+
+
+
